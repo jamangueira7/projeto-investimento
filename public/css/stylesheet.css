@@ -9,7 +9,13 @@
     -moz-box-sizing: border-box;
     -box-sizing: border-box;
 }
-/*stylesheet to login pages
+
+body {
+    background: #ECECEC;
+}
+
+/**
+ *stylesheet to login pages
  *======================================
  */
 div.background{
@@ -78,3 +84,120 @@ section#conteudo-view form input[type="submit"]{
     font: 1em 'Fredoka One', cursive;
     color: #f9f9f9;
 }
+
+/**
+ *stylesheet to menu lateral
+ *======================================
+ */
+#principal{
+    position: fixed;
+    float: left;
+    background: #f9f9f9;
+    width: 220px;
+    height: 100%;
+    z-index: 5;
+    border-right: 1px solid #e9e9e9;
+    box-shadow: 0 0 15px rgba(0,0,0, .15);
+}
+
+#principal ul, #principal li {
+    float: left;
+    width: 100%;
+}
+
+#principal ul li a {
+    float: left;
+    width: 100%;
+    height: 80px;
+    color: #9C9C9C;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+#principal ul li a i{
+    float: left;
+    width: 80px;
+    height: 80px;
+    color: inherit;
+    text-align: center;
+    line-height: 80px;
+    font-size: 2em;
+}
+
+#principal ul li a h3{
+    float: left;
+    height: 80px;
+    font: 1.25em/80px 'Fredoka One', cursive;
+    color: inherit;
+}
+
+#principal ul li a:hover {
+    color: #00ff9c;
+}
+
+/**
+ *stylesheet to conteudo
+ *======================================
+ */
+
+#view-conteudo{
+    position: fixed;
+    float: left;
+    width: 100%;
+    height: 100%;
+    padding: 20px 20px 20px 240px;
+    z-index: 1;
+}
+
+/**
+ *stylesheet to forms
+ *======================================
+ */
+
+form.form-padrao{
+    float: left;
+    width: 100%;
+}
+
+form.form-padrao label{
+    float: left;
+    width: 49%;
+    height: 60px;
+    padding: 7px 15px;
+    border: 1px solid #e9e9e9;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+form.form-padrao label:nth-last-of-type(odd){
+    margin-left: 2%;
+}
+
+form.form-padrao label span{
+    float: left;
+    width: 100%;
+    font: 400 .75em "Arial";
+    color: #c7c7c7;
+    padding-bottom: 5px;
+}
+
+form.form-padrao label input{
+    float: left;
+    width: 100%;
+    font: 400 1.25em "Arial";
+    color: #5c5c5c;
+    background: transparent;
+}
+
+form.form-padrao label.submit{
+    background: #0ad181;
+    border-color: #0aaa67;
+}
+
+form.form-padrao label.submit input{
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 50px;
+    color: #f9f9f9;
+}
+
