@@ -2,34 +2,34 @@
 
 namespace App\Services;
 
-use App\Repositories\UserRepository;
-use App\Validators\UserValidator;
+use App\Repositories\GroupRepository;
+use App\Validators\GroupValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Illuminate\Database\QueryException;
 use Exception;
 
-class UserService
+class GroupService
 {
     private $repository;
     private $validator;
 
-    public function __construct(UserRepository $repository, UserValidator $validator)
+    public function __construct(GroupRepository $repository, GroupValidator $validator)
     {
         $this->repository = $repository;
         $this->validator = $validator;
     }
 
-    public function store($data)
+    public function store(array $data) : array
     {
         try
         {
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-            $user  = $this->repository->create($data);
+            $group  = $this->repository->create($data);
             return [
                 'success' => true,
-                'messages' => "Usuário cadastrado",
-                'data' => $user
+                'messages' => "Grupo cadastrado",
+                'data' => $group
             ];
         }
         catch (Exception $exception)

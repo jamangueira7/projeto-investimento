@@ -10,9 +10,10 @@ namespace App\Services;
 
 use App\Repositories\InstituitionRepository;
 use App\Validators\InstituitionValidator;
-use Illuminate\Database\QueryException;
 use Prettus\Validator\Contracts\ValidatorInterface;
+
 use Prettus\Validator\Exceptions\ValidatorException;
+use Illuminate\Database\QueryException;
 use Exception;
 
 class InstituitionService
