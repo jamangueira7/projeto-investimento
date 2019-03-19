@@ -26,3 +26,5 @@ Route::get('/dashboard', ['as' => 'user.dashboard','uses' => 'DashboardControlle
 
 Route::get('user', ['as' => 'user.index','uses' => 'UsersController@index']);
 
+Route::resource('user', 'UsersController');
+
