@@ -31,6 +31,7 @@
                 <th>E-mail</th>
                 <th>Status</th>
                 <th>Permissão</th>
+                <th>Menu</th>
             </tr>
         </thead>
         <tbody>
@@ -44,6 +45,11 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->status}}</td>
                     <td>{{$user->permission}}</td>
+                    <td>
+                        {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'delete']) !!}
+                        {!! Form::submit('Remover')!!}
+                        {!! Form::close() !!}
+                    </td>
                 </tr>
             @endforeach
         </tbody>

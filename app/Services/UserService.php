@@ -6,7 +6,6 @@ use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
 use Illuminate\Database\QueryException;
 use Prettus\Validator\Contracts\ValidatorInterface;
-
 use Prettus\Validator\Exceptions\ValidatorException;
 use Exception;
 
@@ -54,8 +53,30 @@ class UserService
 
     }
 
-    public function delete()
+    public function destroy($id)
     {
-
+        try
+        {
+            $user  = $this->repository->delete($id);
+            return [
+                'success' => true,
+                'messages' => "Usuário removido.",
+                'data' => null
+            ];
+        }
+        catch (Exception $exception)
+        {
+            switch (get_class($exception))
+            {
+                case QueryException::class :
+                    return[ 'success' => true, 'messages' => $exception->getMessage()];
+                case ValidatorException::class :
+                    return [ 'success' => true, 'messages' => $exception->getMessageBag()];
+                case Exception::class :
+                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                default :
+                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+            }
+        }
     }
 }
