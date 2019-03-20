@@ -48,6 +48,37 @@ class GroupService
         }
     }
 
+    public function userStore($group_id, $data) : array
+    {
+        try
+        {
+            $group = $this->repository->find($group_id);
+            $user_id = $data['user_id'];
+
+            $group->users()->attach($user_id);
+
+            return [
+                'success' => true,
+                'messages' => "Usuário relacionado com sucesso.",
+                'data' => $group
+            ];
+        }
+        catch (Exception $exception)
+        {
+            switch (get_class($exception))
+            {
+                case QueryException::class :
+                    return[ 'success' => true, 'messages' => $exception->getMessage()];
+                case ValidatorException::class :
+                    return [ 'success' => true, 'messages' => $exception->getMessageBag()];
+                case Exception::class :
+                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                default :
+                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+            }
+        }
+    }
+
     public function update()
     {
 

@@ -30,6 +30,8 @@
                         {!! Form::open(['route' => ['instituition.destroy', $inst->id], 'method' => 'delete']) !!}
                         {!! Form::submit("Remover") !!}
                         {!! Form::close() !!}
+                        <a href="{{route('instituition.show', $inst->id)}}">Detalhes</a>
+                        <a href="{{route('instituition.edit', $inst->id)}}">Editar</a>
                     </td>
                 </tr>
             @endforeach

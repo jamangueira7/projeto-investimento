@@ -10,31 +10,10 @@
 
     {!! Form::open(['route'=> 'group.store','method' => 'post', 'class' => 'form-padrao']) !!}
         @include('templates.formulario.input', ['label' => 'Nome do Grupo', 'input' => 'name', 'attributes' => ['placeholder' => 'Nome do Grupo']])
-        @include('templates.formulario.input', ['label' => 'User', 'input' => 'user_id', 'attributes' => ['placeholder' => 'User']])
-        @include('templates.formulario.input', ['label' => 'Instituition', 'input' => 'instituition_id', 'attributes' => ['placeholder' => 'Instituition']])
+        @include('templates.formulario.select', ['label' => 'User', 'select' => 'user_id', 'data' => $user_list])
+        @include('templates.formulario.select', ['label' => 'Instituition', 'select' => 'instituition_id','data' => $instituition_list])
         @include('templates.formulario.submit', ['input' => 'Cadastrar'])
     {!! Form::close() !!}
 
-    <table class="default-table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nome da Instituição</th>
-                <th>Opção</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($groups as $group)
-                <tr>
-                    <td>{{ $group->id }}</td>
-                    <td>{{ $group->name }}</td>
-                    <td>
-                        {!! Form::open(['route' => ['group.destroy', $group->id], 'method' => 'delete']) !!}
-                        {!! Form::submit("Remover") !!}
-                        {!! Form::close() !!}
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    @include('group.list',['group_list' => $groups])
 @stop

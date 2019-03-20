@@ -24,4 +24,9 @@ class Instituition extends Model implements Transformable
 
     public $timestamps = true;
 
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
+
 }

@@ -68,7 +68,7 @@ class UsersController extends Controller
             'messages' => $request['messages'],
         ]);
 
-        return view('user.index', ['user' => $user]);
+        return redirect()->route('user.index');
     }
 
     /**
@@ -103,7 +103,7 @@ class UsersController extends Controller
     {
         $user = $this->repository->find($id);
 
-        return view('users.edit', compact('user'));
+        return view('user.edit', ['user' => $user]);
     }
 
     /**
@@ -116,37 +116,17 @@ class UsersController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        try {
+        $request = $this->service->update($request->all(), $id);
+        $user = $request['success'] ? $request['data'] : null;
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        session()->flash('success', [
+            'success' => $request['success'],
+            'messages' => $request['messages'],
+        ]);
 
-            $user = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'User updated.',
-                'data'    => $user->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        return redirect()->route('user.index');
     }
 
 

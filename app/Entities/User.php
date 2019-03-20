@@ -24,26 +24,31 @@ class User extends Authenticatable
         $this->attributes['password'] = env("PASSWORD_HASH") ? bcrypt('123456') : '123456';
     }
 
-    public function getCpfAttribute()
+    public function getFormattedCpfAttribute()
     {
         $cpf = $this->attributes['cpf'];
 
         return substr($cpf, 0,3). '.'.substr($cpf, 3,3).'.'.substr($cpf, 7,3).'-'.substr($cpf, -2);
     }
 
-    public function getPhoneAttribute()
+    public function getFormattedPhoneAttribute()
     {
         $phone = $this->attributes['phone'];
 
         return "(".substr($phone, 0,2) . ")" . substr($phone, 3,4) ." - " . substr($phone, -4);
     }
 
-    public function getBirthAttribute()
+    public function getFormattedBirthAttribute()
     {
         $birth = explode('-',$this->attributes['birth']);
         if(count($birth) != 3){
             return null;
         }
         return $birth[2] . "/". $birth[1] . "/" . $birth[0];
+    }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'user_groups');
     }
 }

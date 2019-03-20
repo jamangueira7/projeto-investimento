@@ -24,12 +24,17 @@ class Group extends Model implements Transformable
 
     public function owner()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function instituition()
     {
         return $this->belongsTo(Instituition::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_groups');
     }
 
 }

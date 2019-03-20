@@ -48,9 +48,32 @@ class UserService
         }
     }
 
-    public function update()
+    public function update($data, $id)
     {
-
+        try
+        {
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            $user  = $this->repository->update($data, $id);
+            return [
+                'success' => true,
+                'messages' => "Usuário atualizado",
+                'data' => $user
+            ];
+        }
+        catch (Exception $exception)
+        {
+            switch (get_class($exception))
+            {
+                case QueryException::class :
+                    return[ 'success' => true, 'messages' => $exception->getMessage()];
+                case ValidatorException::class :
+                    return [ 'success' => true, 'messages' => $exception->getMessageBag()];
+                case Exception::class :
+                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                default :
+                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+            }
+        }
     }
 
     public function destroy($id)

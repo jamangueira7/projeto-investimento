@@ -20,6 +20,11 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      *
      * @return string
      */
+    public function selectBoxList(string $description = 'name', string $key = 'id')
+    {
+        return $this->model->pluck($description, $key);
+    }
+
     public function model()
     {
         return User::class;
@@ -44,5 +49,5 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
 }
