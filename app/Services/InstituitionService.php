@@ -45,13 +45,13 @@ class InstituitionService
             switch (get_class($exception))
             {
                 case QueryException::class :
-                    return[ 'success' => true, 'messages' => $exception->getMessage()];
+                    return[ 'success' => false, 'messages' => $exception->getMessage()];
                 case ValidatorException::class :
-                    return [ 'success' => true, 'messages' => $exception->getMessageBag()];
+                    return [ 'success' => false, 'messages' => $exception->getMessageBag()];
                 case Exception::class :
-                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
                 default :
-                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
             }
         }
     }
@@ -74,13 +74,13 @@ class InstituitionService
             switch (get_class($exception))
             {
                 case QueryException::class :
-                    return[ 'success' => true, 'messages' => $exception->getMessage()];
+                    return[ 'success' => false, 'messages' => $exception->getMessage()];
                 case ValidatorException::class :
-                    return [ 'success' => true, 'messages' => $exception->getMessageBag()];
+                    return [ 'success' => false, 'messages' => $exception->getMessageBag()];
                 case Exception::class :
-                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
                 default :
-                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
             }
         }
     }

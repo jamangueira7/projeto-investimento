@@ -37,13 +37,13 @@ class GroupService
             switch (get_class($exception))
             {
                 case QueryException::class :
-                    return[ 'success' => true, 'messages' => $exception->getMessage()];
+                    return[ 'success' => false, 'messages' => $exception->getMessage()];
                 case ValidatorException::class :
-                    return [ 'success' => true, 'messages' => $exception->getMessageBag()];
+                    return [ 'success' => false, 'messages' => $exception->getMessageBag()];
                 case Exception::class :
-                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
                 default :
-                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
             }
         }
     }
@@ -68,20 +68,44 @@ class GroupService
             switch (get_class($exception))
             {
                 case QueryException::class :
-                    return[ 'success' => true, 'messages' => $exception->getMessage()];
+                    return[ 'success' => false, 'messages' => $exception->getMessage()];
                 case ValidatorException::class :
-                    return [ 'success' => true, 'messages' => $exception->getMessageBag()];
+                    return [ 'success' => false, 'messages' => $exception->getMessageBag()];
                 case Exception::class :
-                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
                 default :
-                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
             }
         }
     }
 
-    public function update()
+    public function update(array $data, $group_id):array
     {
+        try
+        {
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $group  = $this->repository->update($data, $group_id);
 
+            return [
+                'success' => true,
+                'messages' => "Grupo relacionado com sucesso.",
+                'data' => $group
+            ];
+        }
+        catch (Exception $exception)
+        {
+            switch (get_class($exception))
+            {
+                case QueryException::class :
+                    return[ 'success' => false, 'messages' => $exception->getMessage()];
+                case ValidatorException::class :
+                    return [ 'success' => false, 'messages' => $exception->getMessageBag()];
+                case Exception::class :
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
+                default :
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
+            }
+        }
     }
 
     public function destroy($id)
@@ -100,13 +124,13 @@ class GroupService
             switch (get_class($exception))
             {
                 case QueryException::class :
-                    return[ 'success' => true, 'messages' => $exception->getMessage()];
+                    return[ 'success' => false, 'messages' => $exception->getMessage()];
                 case ValidatorException::class :
-                    return [ 'success' => true, 'messages' => $exception->getMessageBag()];
+                    return [ 'success' => false, 'messages' => $exception->getMessageBag()];
                 case Exception::class :
-                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
                 default :
-                    return [ 'success' => true, 'messages' => $exception->getMessage()];
+                    return [ 'success' => false, 'messages' => $exception->getMessage()];
             }
         }
     }
