@@ -20,6 +20,10 @@ class Group extends Model implements Transformable
      *
      * @var array
      */
+
+    public    $timestamps   = true;
+    protected $table        = 'groups';
+
     protected $fillable = ['name', 'user_id', 'instituition_id'];
 
     public function owner()
@@ -34,7 +38,7 @@ class Group extends Model implements Transformable
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_groups');
+        return $this->belongsToMany(User::class, 'user_groups', 'group_id', 'user_id');
     }
 
 }

@@ -3,8 +3,8 @@
     <tr>
         <th>#</th>
         <th>Nome da Instituição</th>
-        <th>Intituição</th>
         <th>Nome do Responsavel</th>
+        <th>Instituição</th>
         <th>Opção</th>
     </tr>
     </thead>

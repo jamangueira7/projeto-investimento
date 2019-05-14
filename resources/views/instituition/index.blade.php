@@ -4,10 +4,6 @@
 
 @section('conteudo-view')
 
-    @if(session('success'))
-        <h3>{{session('success')['messages']}}</h3>
-    @endif
-
     {!! Form::open(['route'=> 'instituition.store','method' => 'post', 'class' => 'form-padrao']) !!}
     @include('templates.formulario.input', ['label' => 'Nome', 'input' => 'name', 'attributes' => ['placeholder' => 'Nome']])
     @include('templates.formulario.submit', ['input' => 'Cadastrar'])
@@ -32,6 +28,7 @@
                         {!! Form::close() !!}
                         <a href="{{route('instituition.show', $inst->id)}}">Detalhes</a>
                         <a href="{{route('instituition.edit', $inst->id)}}">Editar</a>
+                        <a href="{{route('instituition.product.index', $inst->id)}}">Produtos</a>
                     </td>
                 </tr>
             @endforeach

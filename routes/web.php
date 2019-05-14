@@ -29,5 +29,8 @@ Route::get('user', ['as' => 'user.index','uses' => 'UsersController@index']);
 Route::resource('user', 'UsersController');
 Route::resource('instituition', 'InstituitionsController');
 Route::resource('group', 'GroupsController');
+Route::resource('instituition.product', 'ProductsController');
+
+Route::get('/moviment', ['as' => 'moviment.application','uses' => 'MovimentsController@application']);
 
 Route::post('group/{group_id}/user',['as' => 'group.user.store', 'uses' => 'GroupsController@userStore']);

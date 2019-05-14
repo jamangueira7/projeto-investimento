@@ -8,11 +8,11 @@ use Prettus\Repository\Traits\TransformableTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Product.
+ * Class Moviment.
  *
  * @package namespace App\Entities;
  */
-class Product extends Model implements Transformable
+class Moviment extends Model implements Transformable
 {
     use TransformableTrait;
     use SoftDeletes;
@@ -22,11 +22,21 @@ class Product extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = ['name','instituition_id', 'description', 'index', 'interest_rate'];
+    protected $fillable = ['user_id','group_id','product_id','value','type'];
 
-    public function instituition()
+    public function user()
     {
-        return $this->belongsTo(Instituition::class);
+        $this->belongsTo(User::class);
+    }
+
+    public function group()
+    {
+        $this->belongsTo(Group::class);
+    }
+
+    public function product()
+    {
+        $this->belongsTo(Product::class);
     }
 
 }

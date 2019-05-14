@@ -18,5 +18,12 @@
                 <h3>Grupos</h3>
             </a>
         </li>
+
+        <li>
+            <a href="{{route('moviment.application')}}">
+                <i class="far fa-money-bill-alt"></i>
+                <h3>Investir</h3>
+            </a>
+        </li>
     </ul>
 </nav>

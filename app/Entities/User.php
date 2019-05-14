@@ -4,7 +4,6 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -12,6 +11,8 @@ class User extends Authenticatable
     use Notifiable;
     use SoftDeletes;
 
+    public    $timestamps   = true;
+    protected $table        = 'users';
     protected $fillable = [
         'cpf','name','phone','birth','gender','notes','email','password','status','permission',
     ];
@@ -19,7 +20,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function getPasswordAttribute($valeu)
+    public function getPasswordAttribute($value)
     {
         $this->attributes['password'] = env("PASSWORD_HASH") ? bcrypt('123456') : '123456';
     }
@@ -49,6 +50,6 @@ class User extends Authenticatable
 
     public function groups()
     {
-        return $this->belongsToMany(Group::class, 'user_groups');
+        return $this->belongsToMany(Group::class, 'user_groups', 'user_id', 'group_id');
     }
 }
