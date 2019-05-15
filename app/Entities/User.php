@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Group::class, 'user_groups', 'user_id', 'group_id');
     }
+
+    public function moviments()
+    {
+        return $this->hasMany(Moviment::class);
+    }
 }

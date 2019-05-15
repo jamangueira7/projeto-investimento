@@ -41,4 +41,16 @@ class Group extends Model implements Transformable
         return $this->belongsToMany(User::class, 'user_groups', 'group_id', 'user_id');
     }
 
+    public function moviments()
+    {
+        return $this->hasMany(Moviment::class);
+    }
+
+    public function getTotalValueAttribute()
+    {
+        $inflows = $this->moviments()->applications()->sum('value');
+        $outflows = $this->moviments()->outflows()->sum('value');
+        return $inflows - $outflows;
+    }
+
 }

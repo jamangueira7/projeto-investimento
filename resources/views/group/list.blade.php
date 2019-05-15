@@ -3,6 +3,7 @@
     <tr>
         <th>#</th>
         <th>Nome da Instituição</th>
+        <th>Total</th>
         <th>Nome do Responsavel</th>
         <th>Instituição</th>
         <th>Opção</th>
@@ -13,6 +14,7 @@
         <tr>
             <td>{{ $group->id }}</td>
             <td>{{ $group->name }}</td>
+            <td>R$ {{ number_format($group->total_value, 2, ',', '.') }}</td>
             <td>{{ $group->owner->name }}</td>
             <td>{{ $group->instituition->name }}</td>
             <td>
