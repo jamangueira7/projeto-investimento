@@ -30,6 +30,8 @@ Para executar o projeto siga os comandos abaixo:
 - **Agora rode o projeto usando "php artisan serve". Acesse o projeto pela URL http://127.0.0.1:8000.**
 - **Caso apareça um erro de chave execute o comando "php artisan key:generate".**
 
+- **User criado é o joao@joao.com com senha 123456.**
+
 
 ## Licença
 
