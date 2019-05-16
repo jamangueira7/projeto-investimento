@@ -4,10 +4,6 @@
 
 @section('conteudo-view')
 
-    @if(session('success'))
-        <h3>{{session('success')['messages']}}</h3>
-    @endif
-
     {!! Form::open(['route'=> ['group.user.store', $group->id],'method' => 'post', 'class' => 'form-padrao']) !!}
         @include('templates.formulario.select', [
         'label' => 'Usuario',

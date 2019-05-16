@@ -5,11 +5,21 @@
      <title>Loing | Investindo</title>
      <link rel="stylesheet" href="{{asset('/css/stylesheet.css')}}">
      <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+     <link rel="stylesheet" href="{{ asset('css/alerts.css') }}">
  </head>
  <body>
 
     <div class="background"></div>
     <section id="conteudo-view" class="login">
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{session('success')['messages']}}
+            </div>
+        @elseif(session('error'))
+            <div class="alert alert-danger">
+                {{session('error')['messages']}}
+            </div>
+        @endif
         <h1>Investindo</h1>
         <h3>O nosso gerenciador de investimento</h3>
 

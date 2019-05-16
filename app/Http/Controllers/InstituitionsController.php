@@ -65,12 +65,8 @@ class InstituitionsController extends Controller
     public function store(InstituitionCreateRequest $request)
     {
         $request = $this->service->store($request->all());
-        $instituition = $request['success'] ? $request['data'] : null;
 
-        session()->flash('success', [
-            'success' => $request['success'],
-            'messages' => $request['messages'],
-        ]);
+        msgUsers($request);
 
         return redirect()->route('instituition.index');
     }
@@ -119,10 +115,7 @@ class InstituitionsController extends Controller
     {
         $request = $this->service->update($request->all(), $id);
 
-        session()->flash('success', [
-            'success' => $request['success'],
-            'messages' => $request['messages'],
-        ]);
+        msgUsers($request);
 
         return redirect()->route('instituition.index');
     }

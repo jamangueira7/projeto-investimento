@@ -46,5 +46,12 @@
                 <h3>Extrato</h3>
             </a>
         </li>
+
+        <li>
+            <a href="{{route('user.logout')}}">
+                <i class="fas fa-sign-out-alt"></i>
+                <h3>Logout</h3>
+            </a>
+        </li>
     </ul>
 </nav>

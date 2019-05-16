@@ -69,12 +69,8 @@ class GroupsController extends Controller
     public function store(GroupCreateRequest $request)
     {
         $request = $this->service->store($request->all());
-        $group = $request['success'] ? $request['data'] : null;
 
-        session()->flash('success', [
-            'success' => $request['success'],
-            'messages' => $request['messages'],
-        ]);
+        msgUsers($request);
 
         return redirect()->route('group.index');
     }
@@ -83,10 +79,7 @@ class GroupsController extends Controller
     {
         $request = $this->service->userStore($group_id, $request->all());
 
-        session()->flash('success', [
-            'success' => $request['success'],
-            'messages' => $request['messages'],
-        ]);
+        msgUsers($request);
 
         return redirect()->route('group.show', [$group_id]);
     }
@@ -143,12 +136,8 @@ class GroupsController extends Controller
     public function update(Request $request, $id)
     {
         $request = $this->service->update($request->all(), $id);
-        $group = $request['success'] ? $request['data'] : null;
 
-        session()->flash('success', [
-            'success' => $request['success'],
-            'messages' => $request['messages'],
-        ]);
+        msgUsers($request);
 
         return redirect()->route('group.index');
     }
@@ -165,10 +154,7 @@ class GroupsController extends Controller
     {
         $request = $this->service->destroy($id);
 
-        session()->flash('success', [
-            'success' => $request['success'],
-            'messages' => $request['messages'],
-        ]);
+        msgUsers($request);
 
         return redirect()->route('group.index');
     }

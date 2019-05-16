@@ -34,17 +34,7 @@ class GroupService
         }
         catch (Exception $exception)
         {
-            switch (get_class($exception))
-            {
-                case QueryException::class :
-                    return[ 'success' => false, 'messages' => $exception->getMessage()];
-                case ValidatorException::class :
-                    return [ 'success' => false, 'messages' => $exception->getMessageBag()];
-                case Exception::class :
-                    return [ 'success' => false, 'messages' => $exception->getMessage()];
-                default :
-                    return [ 'success' => false, 'messages' => $exception->getMessage()];
-            }
+            return errorException($exception);
         }
     }
 
@@ -65,17 +55,7 @@ class GroupService
         }
         catch (Exception $exception)
         {
-            switch (get_class($exception))
-            {
-                case QueryException::class :
-                    return[ 'success' => false, 'messages' => $exception->getMessage()];
-                case ValidatorException::class :
-                    return [ 'success' => false, 'messages' => $exception->getMessageBag()];
-                case Exception::class :
-                    return [ 'success' => false, 'messages' => $exception->getMessage()];
-                default :
-                    return [ 'success' => false, 'messages' => $exception->getMessage()];
-            }
+            return errorException($exception);
         }
     }
 
@@ -94,17 +74,7 @@ class GroupService
         }
         catch (Exception $exception)
         {
-            switch (get_class($exception))
-            {
-                case QueryException::class :
-                    return[ 'success' => false, 'messages' => $exception->getMessage()];
-                case ValidatorException::class :
-                    return [ 'success' => false, 'messages' => $exception->getMessageBag()];
-                case Exception::class :
-                    return [ 'success' => false, 'messages' => $exception->getMessage()];
-                default :
-                    return [ 'success' => false, 'messages' => $exception->getMessage()];
-            }
+            return errorException($exception);
         }
     }
 
@@ -121,17 +91,7 @@ class GroupService
         }
         catch (Exception $exception)
         {
-            switch (get_class($exception))
-            {
-                case QueryException::class :
-                    return[ 'success' => false, 'messages' => $exception->getMessage()];
-                case ValidatorException::class :
-                    return [ 'success' => false, 'messages' => $exception->getMessageBag()];
-                case Exception::class :
-                    return [ 'success' => false, 'messages' => $exception->getMessage()];
-                default :
-                    return [ 'success' => false, 'messages' => $exception->getMessage()];
-            }
+            return errorException($exception);
         }
     }
 }

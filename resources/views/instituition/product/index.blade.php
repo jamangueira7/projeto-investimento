@@ -4,10 +4,6 @@
 
 @section('conteudo-view')
 
-    @if(session('success'))
-        <h3>{{session('success')['messages']}}</h3>
-    @endif
-
     {!! Form::open(['route'=> ['instituition.product.store',$instituition->id],'method' => 'post', 'class' => 'form-padrao']) !!}
         @include('templates.formulario.input', ['label' => 'Nome do produto', 'input' => 'name'])
         @include('templates.formulario.input', ['label' => 'Descrição', 'input' => 'description'])

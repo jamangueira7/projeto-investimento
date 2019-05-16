@@ -61,12 +61,8 @@ class UsersController extends Controller
     public function store(UserCreateRequest $request)
     {
         $request = $this->service->store($request->all());
-        $user = $request['success'] ? $request['data'] : null;
 
-        session()->flash('success', [
-            'success' => $request['success'],
-            'messages' => $request['messages'],
-        ]);
+        msgUsers($request);
 
         return redirect()->route('user.index');
     }
@@ -119,12 +115,8 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $request = $this->service->update($request->all(), $id);
-        $user = $request['success'] ? $request['data'] : null;
 
-        session()->flash('success', [
-            'success' => $request['success'],
-            'messages' => $request['messages'],
-        ]);
+        msgUsers($request);
 
         return redirect()->route('user.index');
     }
@@ -141,10 +133,7 @@ class UsersController extends Controller
     {
         $request = $this->service->destroy($id);
 
-        session()->flash('success', [
-            'success' => $request['success'],
-            'messages' => $request['messages'],
-        ]);
+        msgUsers($request);
 
         return redirect()->route('user.index');
     }

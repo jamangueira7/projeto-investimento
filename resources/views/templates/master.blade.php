@@ -1,6 +1,13 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
     <head>
         <title>Investindo</title>
+        <?php
+        ini_set('default_charset','UTF-8');
+        ?>
+        <meta charset="utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Language" content="pt-br">
         @yield('css-view')
         <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}">
         <link rel="stylesheet" href="{{ asset('css/alerts.css') }}">
@@ -15,7 +22,7 @@
                     {{session('success')['messages']}}
                 </div>
             @elseif(session('error'))
-                <div class="alert alert-error">
+                <div class="alert alert-danger">
                     {{session('error')['messages']}}
                 </div>
             @endif

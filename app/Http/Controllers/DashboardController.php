@@ -16,12 +16,13 @@ class DashboardController extends Controller
     {
         $this->repository = $repository;
         $this->validator  = $validator;
-    }
+    }//__construct
 
     public function index()
     {
         return view('user.dashboard');
-    }
+    }//index
+
     public function auth(Request $request)
     {
         $data = [
@@ -34,18 +35,37 @@ class DashboardController extends Controller
             }else{
                 $user = $this->repository->findWhere(['email' => $request->get('username')])->first();
                 if(!$user){
-                    throw new Exception("E-mail informado não está cadastrado.");
+                    session()->flash('error', [
+                        'error' => true,
+                        'messages' => "E-mail informado não está cadastrado.",
+                    ]);
+                    return view('user.login');
                 }
                 if($user->password == $request->get('password')){
-                    throw new Exception("Senha informada não correspondente ao usuário.");
+                    session()->flash('error', [
+                        'error' => true,
+                        'messages' => "Senha informada não correspondente ao usuário.",
+                    ]);
+                    return view('user.login');
                 }
                 \Auth::login($user);
             }
-            return redirect()->route('user.dashboard');
+            session()->flash('success', [
+                'success' => true,
+                'messages' => "Usuário logado. Bem vindo ao sistema {$user->name}.",
+            ]);
+            return view('user.dashboard');
 
         }
         catch (Exception $e){
             return $e->getMessage();
         }
-    }
-}
+    }//auth
+
+    public function logout()
+    {
+        \Auth::logout();
+        return redirect()->route('user.login');
+    }//logout
+
+}//DashboardController

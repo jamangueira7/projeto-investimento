@@ -5,8 +5,8 @@
 @section('conteudo-view')
 
     {!! Form::open(['route'=> 'instituition.store','method' => 'post', 'class' => 'form-padrao']) !!}
-    @include('templates.formulario.input', ['label' => 'Nome', 'input' => 'name', 'attributes' => ['placeholder' => 'Nome']])
-    @include('templates.formulario.submit', ['input' => 'Cadastrar'])
+        @include('templates.formulario.input', ['label' => 'Nome', 'input' => 'name', 'attributes' => ['placeholder' => 'Nome']])
+        @include('templates.formulario.submit', ['input' => 'Cadastrar'])
     {!! Form::close() !!}
 
     <table class="default-table">
