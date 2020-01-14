@@ -1,0 +1,39 @@
+version: '3'
+
+volumes:
+  pro-investimento-data:
+    driver: local
+  data:
+    driver: local
+
+networks:
+  backend:
+    driver: "bridge"
+
+services:
+  pro-investimento:
+    image: psychemedics/apache:7.2
+    container_name: pro-investimento
+    volumes:
+      - ../:/var/www/html/
+    ports:
+      - "8101:8080"
+    depends_on:
+      - mysqldb
+    networks:
+      - backend
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:5.7
+    volumes:
+      - data:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=proj-invest
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+
