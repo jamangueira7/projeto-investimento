@@ -15,20 +15,23 @@ Ferramentas usada para fazer o projeto:
 Para executar o projeto siga os comandos abaixo:
 
 - **Clone o projeto.**
-- **Entre na pasta do projeto clonado e digite o comando "composer install"**
-- **Depois de instaladas todas as dependencias crie um banco no MySql. Eu crie como "proj-invest"**
-- **Renovei o arquivo ".env.exmeplo" para ".env" e preencha os seus dados de conexão.**
+- **Entrar nas pasta "Docker".**
+- **Execute o comando "docker-compose up -d --build".**
+- **Execute o comando "docker ps". Esse comando vai te mostrar a lista de container executando.**
+- **Execute o comando "docker exec -it NOMECONTAINER bash". NOMECONTAINER é pego no comando anterior na coluna "NAMES".**
+- **Apos entrar no container do apache execute o comando "composer install" para instalar as dependencias do projeto.**
+- **Preencha os seus dados de conexão.**
 
         DB_CONNECTION=mysql
         DB_HOST=127.0.0.1
         DB_PORT=3306
         DB_DATABASE=proj-invest
         DB_USERNAME=root
-        DB_PASSWORD=
+        DB_PASSWORD=root
 
-- **Rode o comando para criar o banco e os dados dele "php artisan migration --seed".**
-- **Agora rode o projeto usando "php artisan serve". Acesse o projeto pela URL http://127.0.0.1:8000.**
-- **Caso apareça um erro de chave execute o comando "php artisan key:generate".**
+- **Rode o comando para criar o banco e os dados nele "php artisan migration --seed".**
+- **Acesse o projeto pela URL http://127.0.0.1:8101.**
+- **Caso apareça um erro de chave execute o comando "php artisan key:generate" dentro do container.**
 
 - **User criado é o joao@joao.com com senha 123456.**
 
